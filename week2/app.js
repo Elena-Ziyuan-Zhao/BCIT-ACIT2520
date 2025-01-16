@@ -101,12 +101,7 @@ const multipler = function(num1, num2, cb) {
 };
 
 
-const result = multipler(5, 2, (error, result) => {
-    console.log(error);
-    console.log(result);
-});
-
-const result2 = multipler(1, "banana", (error, result) => {
+const result2 = multipler(1, "2", (error, result) => {
     if (error) {
         console.log(error);
     } else {
@@ -115,5 +110,41 @@ const result2 = multipler(1, "banana", (error, result) => {
 });
 
 
-const fs = requrie("fs");
-fs.readFileSync("");
+
+
+const fs = require("fs");
+
+//if you use writeFile, then you have to make read file nested because it is asynchronous as 
+
+fs.writeFile("bigfile.txt", "bcit", (error)=> {
+    if (error) {
+        return console.log(error)
+    }
+
+    console.log("file written");
+
+    fs.readFile("bigfile.txt", "utf8", (error, data) => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(data);
+        };
+    });
+})
+
+
+// Asyncrhonous function: runs in the background
+//we are going to read file but it will take time
+//so the CPU will use hyperthread to asynchronously read the file in the background
+//node.js will skip this reading part and running rest of the code ---> sendEmail()
+//the main thread is not blocked by this running part, and skip to running sendEmail()
+// the "sending email ....." will shows first in terminal 
+
+
+
+//this read first 
+sendEmail();
+function sendEmail() {
+    console.log("sending email .....");
+}
+
