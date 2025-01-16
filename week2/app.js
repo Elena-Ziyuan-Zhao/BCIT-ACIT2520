@@ -92,3 +92,28 @@ colors.forEach(value => console.log(value)); // can even leave the functionName,
 // requirment: in any callback function, always use arrow function in exams and courses 
 
 
+const multipler = function(num1, num2, cb) {
+    if (typeof num1 != "number" || typeof num2 != "number") {
+        cb(new Error("ERROR! Invalid Input"));
+    } else {
+        cb(null, parseInt(num1) * parseInt(num2));
+    }
+};
+
+
+const result = multipler(5, 2, (error, result) => {
+    console.log(error);
+    console.log(result);
+});
+
+const result2 = multipler(1, "banana", (error, result) => {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log(result);
+    }
+});
+
+
+const fs = requrie("fs");
+fs.readFileSync("");
