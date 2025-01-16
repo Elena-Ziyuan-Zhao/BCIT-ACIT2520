@@ -101,7 +101,7 @@ const multipler = function(num1, num2, cb) {
 };
 
 
-const result2 = multipler(1, "2", (error, result) => {
+const result2 = multipler(1, 2, (error, result) => {
     if (error) {
         console.log(error);
     } else {
